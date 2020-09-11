@@ -34,6 +34,7 @@ Let’s deploy a scenario in which we use historic data to create ML models on S
 The architetcure we're deploying today is 
 ![Architecture](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/Final_Architecture.svg)
 
+
 ## Data Flow:
 
 **Step 1**: Setup ADF to transfer historic data from Blob and other sources to ADLS  
