@@ -34,4 +34,11 @@ Let’s deploy a scenario in which we use historic data to create ML models on S
 The architetcure we're deploying today is 
 ![Architecture](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/Final_Architecture.svg)
 
+## Data Flow:
 
+**Step 1**: Setup ADF to transfer historic data from Blob and other sources to ADLS  
+**Step 2**: Load historic data into ADLS storage that is associated with Spark HDInsight cluster using Azure Data Factory (In this example, we will simluate this step by transfering a csv file from a Blob Storage )  
+**Step 3**: Use Spark HDInsight cluster (HDI 4.0, Spark 2.4.0) to create ML models  
+**Step 4**: Save the models back in ADLS Gen2  
+**Step 5**: Kafka HDInsight will receive streaming requests for predictions (In this example, we are simulating streaming data in Kafka using a static file)  
+**Step 6**: 
