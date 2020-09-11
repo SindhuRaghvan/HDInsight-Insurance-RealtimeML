@@ -18,7 +18,7 @@ __NOTE__: Apache Kafka and Spark are available as two different cluster types. H
 
 Use the following button to sign in to Azure and open the template in the Azure portal:
     
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDITemplateforInsurance%2Fmaster%2Fmodular-template.json)  
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDInsight-Insurance-RealtimeML%2Fmaster%2FARM-Template%2Fmodular-template.json)  
 This template creates an Azure Virtual Network, Kafka on HDInsight 3.6, and Spark 2.4.0 on HDInsight 4.0.
 
 ## Understand this example
