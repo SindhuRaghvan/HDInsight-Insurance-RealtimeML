@@ -1,11 +1,11 @@
 ## HDInsight-Insurance-RealtimeML
 
 ---
-page_type: sample
-languages:
 products:
   - azure
   - azure-hdinsight
+  - azure-SQL
+  - Azure-Data-Factory
 description: "This is a an example of running realtime inference on data streaming from Kafka on HDInsight into a Spark HDInsight cluster."
 urlFragment: HDInsight-Insurance-RealtimeML
 ---
@@ -21,8 +21,17 @@ Use the following button to sign in to Azure and open the template in the Azure 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDInsight-Insurance-RealtimeML%2Fmaster%2FARM-Template%2Fmodular-template.json)  
 This template creates an Azure Virtual Network, Kafka on HDInsight 3.6, and Spark 2.4.0 on HDInsight 4.0.
 
-## Understand this example
+# Understand the Usecase
+
+**Use Case:** 
+
+Insurance companies use multiple inputs including individual/enterprise history, market conditions, competitor analysis, previous claims, local demographics, weather conditions, regional traffic data and other external/internal sources to identify the risk category of a potential customer. These inputs can come from multiple sources at very different intervals. 
+
+Let’s deploy a scenario in which we use historic data to create ML models on Spark, and as new requests come in from Insurance users or the agents, we evaluate the users in **real time** and predict whether they are likely to be in a crash and how much would their next claim be, if they’re likely to be in a crash.
+
+## Architecture
+
+The architetcure we're deploying today is 
 
 
-## To run this example
 
