@@ -50,5 +50,7 @@ az storage blob upload --account-name $ADLSName \
 echo "Transfering files to Kafka and Spark servers...."
 scp -r kafkafiles/ sshuser@$KafkaName-ssh.azurehdinsight.net:files/
 scp Scripts/consumer.py sshuser@$SparkName-ssh.azurehdinsight.net:consumer.py
+scp Scripts/sparkinstall.sh sshuser@$SparkName-ssh.azurehdinsight.net:sparkinstall.sh
+
 
 
