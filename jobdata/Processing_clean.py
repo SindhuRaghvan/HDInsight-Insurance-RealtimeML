@@ -20,11 +20,11 @@ sc = spark.sparkContext
 sqlContext = SQLContext(sc)
 
 # Location of training data
-ins_train_file_loc = "abfs://data@adlsclusterstore992020.dfs.core.windows.net/car_insurance_claim.csv"
+ins_train_file_loc = "abfs://data@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/car_insurance_claim.csv"
 # Set model storage directory path. This is where models will be saved.
-CatModelLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/CatMod/"; # The last backslash is needed;
-IntModelLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/IntMod/"
-PipelineLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/PipelineMod/"
+CatModelLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/CatMod/"; # The last backslash is needed;
+IntModelLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/IntMod/"
+PipelineLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/PipelineMod/"
 
 # Let's make sure that we got the locations correct
 print(ins_train_file_loc)

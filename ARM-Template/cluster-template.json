@@ -3,44 +3,25 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "sparkClusterName": {
-        "type": "string",
-        "metadata": {
-          "description": "The name of the Spark cluster to create. This must be a unique name."
-        }
+        "type": "string"
       },
       "kafkaClusterName": {
-        "type": "string",
-        "metadata": {
-          "description": "The name of the Kafka cluster to create. This must be a unique name."
-        }
+        "type": "string"
       },
       "clusterLoginUserName": {
         "type": "string",
-        "defaultValue": "admin",
-        "metadata": {
-          "description": "These credentials can be used to submit jobs to the clusters and to log into clusters dashboards."
-        }
+        "defaultValue": "admin"
       },
       "clusterLoginPassword": {
-        "type": "securestring",
-        "defaultValue": "Micr0pwd!@",
-        "metadata": {
-          "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
-        }
+        "type": "securestring"
       },
       "sshUserName": {
         "type": "string",
-        "defaultValue": "sshuser",
-        "metadata": {
-          "description": "These credentials can be used to remotely access the clusters."
-        }
+        "defaultValue": "sshuser"
       },
       "sshPassword": {
         "type": "securestring",
-        "defaultValue": "Micr0pwd!@",
-        "metadata": {
-          "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
-        }
+        "defaultValue": "Micr0pwd!@"
       },
      "ADLSGen2StorageName": {
          "type": "string"

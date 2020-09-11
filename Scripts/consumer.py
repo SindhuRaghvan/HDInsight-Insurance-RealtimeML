@@ -17,22 +17,22 @@ import json , requests, os
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming-kafka-0-10_2.11:2.3.0,org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 pyspark-shell'
 
 conf = SparkConf()  # create the configuration
-conf.set("spark.jars", "abfs://dependency@adlsclusterstore992020.dfs.core.windows.net/spark-mssql-connector_2.11-1.1.0.jar")  # set the spark.jars
+conf.set("spark.jars", "abfs://dependency@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/spark-mssql-connector_2.11-1.1.0.jar")  # set the spark.jars
 spark = SparkSession.builder.appName("ConsumerKafka").config(conf=conf).getOrCreate()
 
-servername = "jdbc:sqlserver://sqlforpredictions.database.windows.net:1433"
+servername = "jdbc:sqlserver://<SQL_SERVER_HERE>.database.windows.net:1433"
 dbname = "Predictions"
 url = servername + ";" + "databaseName=" + dbname + ";"
 table_name = "UserData"     
 username = "sqluser"  #Enter your SQL username here (if you changed from default)
-password = "Micr0pwd!@"  #Enter your SQL password here
+password = "<SQL_PWD_HERE>"  #Enter your SQL password here
 
 
-write_file_loc = "abfs://predictions@adlsclusterstore992020.dfs.core.windows.net/predicted_data/"
-check_point_loc= "abfs://predictions@adlsclusterstore992020.dfs.core.windows.net/checkpoint_data/"
-CatModelLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/CatMod/"; # The last backslash is needed;
-IntModelLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/IntMod/"
-PipelineLoc = "abfs://models@adlsclusterstore992020.dfs.core.windows.net/PipelineMod/"
+write_file_loc = "abfs://predictions@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/predicted_data/"
+check_point_loc= "abfs://predictions@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/checkpoint_data/"
+CatModelLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/CatMod/"; # The last backslash is needed;
+IntModelLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/IntMod/"
+PipelineLoc = "abfs://models@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/PipelineMod/"
 
 
 schema = StructType([ StructField("ID", StringType(), True),
@@ -60,10 +60,15 @@ PModel = PipelineModel.load(PipelineLoc)
 LRModel = LogisticRegressionModel.load(CatModelLoc)
 GBTModel = GBTRegressionModel.load(IntModelLoc)  
 
-#Replace the bootstrapservers below
+#Replace the bootstrapservers below...
+KafkaBserver="<ENTER-KAFKAZBROKER-HERE>" #TODO : Replace with the first server from $KAFKABROKERS
+
+if KafkaBserver == "<ENTER-KAFKAZBROKER-HERE>":
+    print("Update Kafka server in the file")
+    exit()
 
 raw_records = spark.readStream.format("kafka") \
-    .option("kafka.bootstrap.servers", "wn0-kafkai.yzwod5meikrurjluirb4xzsm2h.bx.internal.cloudapp.net:9092")\
+    .option("kafka.bootstrap.servers", KafkaBserver)\
     .option("subscribe", "NewUser") \
     .option("startingOffsets", "latest") \
     .load()

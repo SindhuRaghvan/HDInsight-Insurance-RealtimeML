@@ -17,7 +17,7 @@ import csv
 ## Configuration section
 ## Replace kafkaBrokers
 defaultLoops = 1000
-kafkaBrokers = ['wn0-kafkai.yzwod5meikrurjluirb4xzsm2h.bx.internal.cloudapp.net:9092'] #TODO: Replace with your Kafka broker endpoint (including port)
+kafkaBrokers = ['<BROKER_HERE>'] #TODO: Replace with your Kafka broker endpoint (including port)
 kafkaTopic = 'NewUser'
 simulator = True
 loops = defaultLoops

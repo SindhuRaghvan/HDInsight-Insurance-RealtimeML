@@ -23,7 +23,7 @@
   "variables": {
     
     "sqlDatabase": {
-      "serverName": "sqlforpredictions",
+      "serverName": "[concat('SQLFor',uniqueString(resourceGroup().name))]",
       "databaseName": "Predictions"
     },
     "storageBlobOwner": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b')]",

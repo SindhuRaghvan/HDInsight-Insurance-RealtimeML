@@ -23,7 +23,6 @@
         },
         "clusterLoginPassword": {
             "type": "securestring",
-            "defaultValue": "Micr0pwd!@",
             "metadata": {
                 "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
@@ -37,7 +36,6 @@
         },
         "sshPassword": {
             "type": "securestring",
-            "defaultValue": "Micr0pwd!@",
             "metadata": {
                 "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
@@ -51,18 +49,17 @@
         },
         "sqlAdminPassword": {
             "type": "securestring",
-            "defaultValue": "Micr0pwd!@",
             "metadata": {
                 "description": "The password can be used to access the SQL database.The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
         }
     },
     "variables": {
-        "ADLSGen2StorageName": "adlsclusterstore992020",
+        "ADLSGen2StorageName": "[concat('ADLS',uniqueString(resourceGroup().name))]",
         "managedIdentityName": "[concat(uniqueString(resourceGroup().id),'mi')]",
-        "blobStorageName": "ejt3zbd5b6szsblob"
+        "blobStorageName": "[concat(uniqueString(resourceGroup().name),'blob')]"
 
-    },
+    },  
     "resources": [
 
         {
@@ -72,7 +69,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/ARM-Template/storage-template.json"
+                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDITemplateforInsurance/master/storage-template.json"
                 },
                 "parameters": {
                     "ADLSGen2StorageName": { "value": "[variables('ADLSGen2StorageName')]" },
@@ -94,7 +91,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/ARM-Template/cluster-template.json"
+                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDITemplateforInsurance/master/cluster-template.json"
                 },
                 "parameters": {
                     "sparkClusterName": { "value": "[parameters('sparkClusterName')]" },
@@ -120,7 +117,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/ARM-Template/adftemplate.json"
+                    "uri": "https://raw.githubusercontent.com/SindhuRaghvan/HDITemplateforInsurance/master/adftemplate.json"
                 },
                 "parameters": {
                     "sparkClusterName": { "value": "[parameters('sparkClusterName')]" },

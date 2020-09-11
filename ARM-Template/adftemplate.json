@@ -24,8 +24,6 @@
       "factoryId": "[concat('Microsoft.DataFactory/factories/', variables('factoryName'))]",
       "clusterUrl": "[concat('https://', parameters('sparkClusterName'), '.azurehdinsight.net')]",
       "adlsgen2url": "[concat('https://', parameters('AzureDataLakeStorageName'), '.dfs.core.windows.net')]"
-      //"Blob_accountkey" : "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('blobStorageName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]",
-      //"Blob_connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('blobStorageName'), ';AccountKey=', variables('Blob_accountkey'), ';EndpointSuffix=core.windows.net')]"
     },
     "resources": [
       {
