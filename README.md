@@ -21,11 +21,11 @@ __NOTE__: Apache Kafka and Spark are available as two different cluster types. H
 
 Insurance companies use multiple inputs including individual/enterprise history, market conditions, competitor analysis, previous claims, local demographics, weather conditions, regional traffic data and other external/internal sources to identify the risk category of a potential customer. These inputs can come from multiple sources at very different intervals. 
 
-Let’s deploy a scenario in which we use historic data to create ML models on Spark, and as new requests come in from Insurance users or the agents, we evaluate the users in **real time** and predict whether they are likely to be in a crash and how much would their next claim be, if they’re likely to be in a crash.
+Let’s deploy a scenario in which we use historic data to create ML models on Spark. Then, we use Kafka to stream real-time requests from Insurance users or the agents. As new requests come in, we evaluate the users and predict in _**real time**_ whether they are likely to be in a crash and how much would their next claim be, if they’re likely to be in a crash.
 
 ## Architecture
 
-The architetcure we're deploying today is 
+The architecture we're deploying today is 
 </br>
 </br>
 ![Architecture](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/Final_Architecture.svg)
@@ -48,15 +48,15 @@ The architetcure we're deploying today is
     
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDInsight-Insurance-RealtimeML%2Fmaster%2FARM-Template%2Fmodular-template.json)  
 
-This template wil deploy all the resources seen in the architecture above 
+This template will deploy all the resources seen in the architecture above 
 
 _(Note: This deployment may take about 10-15 minutes. Wait until all the resources are deployed before moving to the next step)_
 
 ***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
-Alternatively you can use local Azure CLI
+Alternatively, you can use local Azure CLI
 
 
-If you're in a different subscriptpion, set the subscription using the following command:
+If you're in a different subscription, set the subscription using the following command:
 
 `az account set <your-subscription-name>`
 
@@ -107,7 +107,7 @@ Run the second command as required to monitor the pipeline run. Alternatively, y
 
 ***Step 6:*** Go to the database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
 > [!TIP]
->  If Required, setup firewall to acsess the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
+>  If Required, setup firewall to access the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
 
 In the query editor, execute the following query to create a table the holds final predictions:
 
@@ -176,7 +176,7 @@ Simultaneously, let's run the consumer file on **Spark server** to receive the s
 
 This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created.
 
-***Step 10:*** In a bit, the table on SQL databse should populate. Check on the SQL Qery Editor with query:
+***Step 10:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
 
 `Select * from UserData`
 
