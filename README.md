@@ -179,7 +179,7 @@ This file will use Spark streaming to retrieve the kafka data, transform it, run
 
 Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
 
-
+![Model](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBIModel.PNG?raw=true | width=100)
 
 Click on Get Data from the top ribbon, and choose Azure SQL Database.  
 
@@ -190,6 +190,8 @@ Database name: Predictions,
 choose the "UserData" table and click on Load. 
 
 You can setup by clicking on change detection in the Modeling pane. Once setup, your report will update every 5 seconds to get fresh data, and should look like this:
+
+![PBI_Final_Report](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBI.PNG?raw=true)
 
 
 
