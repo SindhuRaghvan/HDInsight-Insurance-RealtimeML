@@ -159,7 +159,10 @@ Copy the output of the file to use in a little bit
 ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
 ```
 
-Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream.
+Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream. 
+
+> [!NOTE]
+> If you changed the SQL User name during deployment, you need to change the username as well.
 
 ***Step 9:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
 

@@ -27,7 +27,7 @@ servername = "jdbc:sqlserver://<SQL_SERVER_HERE>.database.windows.net:1433"
 dbname = "Predictions"
 url = servername + ";" + "databaseName=" + dbname + ";"
 table_name = "UserData"     
-username = "sqluser"  
+username = "sqluser"  #Change the username if you changed it during deployment
 password = "<SQL_PWD_HERE>"  
 
 
