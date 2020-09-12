@@ -103,7 +103,12 @@ Get-AzDataFactoryV2PipelineRun
 
 </br>
 
-Run the second command as required to monitor the pipeline run. Alternatively, you can monitor the run through the ADF portal by clicking on the resource --> "Author and Monitor" --> "Monitor" on the left menu
+Run the second command as required to monitor the pipeline run. Alternatively, you can monitor the run through the ADF portal by clicking on the resource --> "Author and Monitor" --> "Monitor" on the left menu  
+
+</br>
+if you would like to see what is going on in the spark job, go to the Spark cluster on Azure Portal and click on "Jupyter Notebook" in the Overview page. Once you login, click on Upload, and upload the CarInsuranceProcessing.ipynb file from the Notebook folder. You can run through the notebook step by step.   
+</br> 
+</br>
 
 ***Step 6:*** Go to the database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
 > [!TIP]
