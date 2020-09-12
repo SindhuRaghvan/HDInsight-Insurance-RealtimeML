@@ -20,12 +20,15 @@ conf = SparkConf()  # create the configuration
 conf.set("spark.jars", "abfs://dependency@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/spark-mssql-connector_2.11-1.1.0.jar")  # set the spark.jars
 spark = SparkSession.builder.appName("ConsumerKafka").config(conf=conf).getOrCreate()
 
+#Replace the bootstrapservers below...
+KafkaBserver="<ENTER-KAFKABROKER-HERE>" #TODO : Replace with the server value copied from the Kafka Server
+
 servername = "jdbc:sqlserver://<SQL_SERVER_HERE>.database.windows.net:1433"
 dbname = "Predictions"
 url = servername + ";" + "databaseName=" + dbname + ";"
 table_name = "UserData"     
-username = "sqluser"  #Enter your SQL username here (if you changed from default)
-password = "<SQL_PWD_HERE>"  #Enter your SQL password here
+username = "sqluser"  
+password = "<SQL_PWD_HERE>"  
 
 
 write_file_loc = "abfs://predictions@<ADLS GEN2 STORAGE NAME>.dfs.core.windows.net/predicted_data/"
@@ -59,9 +62,6 @@ print("Loading Models....")
 PModel = PipelineModel.load(PipelineLoc)  
 LRModel = LogisticRegressionModel.load(CatModelLoc)
 GBTModel = GBTRegressionModel.load(IntModelLoc)  
-
-#Replace the bootstrapservers below...
-KafkaBserver="<ENTER-KAFKAZBROKER-HERE>" #TODO : Replace with the first server from $KAFKABROKERS
 
 if KafkaBserver == "<ENTER-KAFKAZBROKER-HERE>":
     print("Update Kafka server in the file")

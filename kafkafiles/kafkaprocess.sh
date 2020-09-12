@@ -19,6 +19,6 @@ arrIN=(${KAFKABROKERS//,/ })
 echo "Updating producer file..."
 sed -i -e 's/<BROKER_HERE>/'$arrIN'/g' producer-simulator.py
 
-echo "Copy the following output to paste into the consumer file:"
+echo "Copy the following Kafka broker to paste into the consumer file:"
 echo arrIN
 

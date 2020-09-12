@@ -42,7 +42,7 @@ The architetcure we're deploying today is
 
 # Let's get into it:
 
-**Step 1:** Use the following button to sign in to Azure and open the template in the Azure portal:
+***Step 1:*** Use the following button to sign in to Azure and open the template in the Azure portal:
     
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDInsight-Insurance-RealtimeML%2Fmaster%2FARM-Template%2Fmodular-template.json)  
 
@@ -50,4 +50,144 @@ This template wil deploy all the resources seen in the architecture above
 
 _(Note: This deployment may take about 10-15 minutes. Wait until all the resources are deployed before moving to the next step)_
 
-**Step 2:** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![iconicon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
+***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
+Alternatively you can use local Azure CLI
+
+
+If you're in a different subscriptpion, set the subscription using the following command:
+
+`az account set <your-subscription-name>`
+
+***Step 3:*** Clone the repository to your cloudshell and give execute permissions:
+
+```
+git clone https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML.git
+
+chmod 777 -R HDInsight-Insurance-RealtimeML/
+```
+***Step 4:*** Move into the first directory and run the DataUpload script. This script will update files with your unique resource names and upload all the required files to the newly deployed resources
+
+> [!NOTE]
+> _Before running this, note the resource names and passwords deployed through the ARM Template_
+
+
+```azurecli
+cd HDInsight-Insurance-RealtimeML/
+./Scripts/DataUpload.sh
+```
+
+
+
+***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Toggle shell in the cloudshell)
+
+This will copy the car_insurance_claim.csv file from Azure Blob storage to ADLS Storage associated with the Spark cluster. Then, it will run the spark job to create and store the ML models on the transferred data.   
+
+</br>
+  
+```azurepowershell
+$resourceGroup="<your-resource-group>"
+$dataFactory="<your-data-factory-name>"
+
+$pipeline =Invoke-AzDataFactoryV2Pipeline 
+    -ResourceGroupName $resourceGroup 
+    -DataFactory $dataFactory 
+    -PipelineName "LoadAndModel"
+
+Get-AzDataFactoryV2PipelineRun 
+    -ResourceGroupName $resourceGroup  
+    -DataFactoryName $dataFactory 
+    -PipelineRunId $pipeline
+```
+
+</br>
+
+Run the second command as required to monitor the pipeline run. Alternatively, you can monitor the run through the ADF portal by clicking on the resource --> "Author and Monitor" --> "Monitor" on the left menu
+
+***Step 6:*** Go to the database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
+> [!TIP]
+>  If Required, setup firewall to acsess the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
+
+In the query editor, execute the following query to create a table the holds final predictions:
+
+```sql
+IF OBJECT_ID('UserData', 'U') IS NOT NULL
+DROP TABLE UserData
+GO
+-- Create the table in the specified schema
+CREATE TABLE UserData
+(
+    ID INT, -- primary key column
+    BIRTH DATE,
+    AGE INT,
+    HOMEKIDS INT,
+    YearsOnJob INT,
+    INCOME INT,
+    MSTATUS NVARCHAR(3),
+    GENDER NVARCHAR(10),
+    EDUCATION NVARCHAR(20),
+    OCCUPATION NVARCHAR(20),
+    Travel_Time INT,
+    BLUEBOOK INT,
+    Time_In_Force INT,
+    CAR_TYPE NVARCHAR(20),
+    OLDCLAIM_AMT INT,
+    CLAIM_FREQ INT,
+    MVR_PTS INT,
+    CAR_AGE INT,
+    time_p DATETIME NOT NULL,
+    CLAIM_PRED FLOAT,
+    CRASH_PRED VARCHAR(4) 
+);
+GO
+```
+</br>
+
+***Step 7:***  Log into Kafka server via ssh and run the kafkaprocess.sh file inside the files/ directory. This will install all the required libraries to run our example.
+
+
+```bash
+ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
+./files/kafkaprocess.sh
+```
+
+Copy the output of the file to use in a little bit
+
+***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
+
+
+```bash
+ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
+```
+
+Open the consumer.py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream.
+
+***Step 9:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
+
+`python files/producer-simulator.py`
+
+Simultaneously, let's run the consumer file on **Spark server** to receive the stream from kafka server
+
+`python consumer.py`
+
+This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created.
+
+***Step 10:*** In a bit, the table on SQL databse should populate. Check on the SQL Qery Editor with query:
+
+`Select * from UserData`
+
+***Step 11:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
+
+Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. Click on Get Data from the top ribbon, and choose Azure SQL Database. 
+
+**Parameters**:  
+servername: your-server-name.database.windows.net (full server name)  
+Database name: Predictions,  
+"Direct Query"  
+choose the "UserData" table and click on Load. 
+
+You can setup by clicking on change detection in the Modeling pane. Once setup, your report will update every 5 seconds to get fresh data, and should look like this:
+
+
+
+
+
