@@ -177,7 +177,11 @@ This file will use Spark streaming to retrieve the kafka data, transform it, run
 
 ***Step 11:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
 
-Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. Click on Get Data from the top ribbon, and choose Azure SQL Database. 
+Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
+
+
+
+Click on Get Data from the top ribbon, and choose Azure SQL Database.  
 
 **Parameters**:  
 servername: your-server-name.database.windows.net (full server name)  
