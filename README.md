@@ -50,4 +50,4 @@ This template wil deploy all the resources seen in the architecture above
 
 _(Note: This deployment may take about 10-15 minutes. Wait until all the resources are deployed before moving to the next step)_
 
-**Step 2:** Go to Azure Cloud Shell (either azure.shell.com) 
+**Step 2:** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell icon ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/00559-icon-service-Azure-Cloud-Shell.svg) on portal.azure.com)  
