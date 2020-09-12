@@ -25,7 +25,9 @@ Let’s deploy a scenario in which we use historic data to create ML models on S
 
 ## Architecture
 
-The architetcure we're deploying today is </br>
+The architetcure we're deploying today is 
+</br>
+</br>
 ![Architecture](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/Final_Architecture.svg)
 
 
