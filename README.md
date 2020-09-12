@@ -6,8 +6,8 @@ products:
   - azure-hdinsight
   - azure-SQL
   - Azure-Data-Factory
+  - Azure Data Lake Storage
 description: "This is a an example of running realtime inference on data streaming from Kafka on HDInsight into a Spark HDInsight cluster."
-urlFragment: HDInsight-Insurance-RealtimeML
 ---
 
 # HDInsight Realtime Inference
@@ -159,7 +159,7 @@ Copy the output of the file to use in a little bit
 ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
 ```
 
-Open the consumer.py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream.
+Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream.
 
 ***Step 9:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
 
@@ -179,12 +179,12 @@ This file will use Spark streaming to retrieve the kafka data, transform it, run
 
 Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
 
-![Model](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBIModel.PNG?raw=true | width=100)
+<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBIModel.PNG?raw=true" width=200>
 
-Click on Get Data from the top ribbon, and choose Azure SQL Database.  
+Click on **Get Data** from the top ribbon, and choose Azure SQL Database.  
 
 **Parameters**:  
-servername: your-server-name.database.windows.net (full server name)  
+servername: <your-server-name<i></i>>.<i></i>database.<i></i>windows.<i></i>net (full server name)  
 Database name: Predictions,  
 "Direct Query"  
 choose the "UserData" table and click on Load. 
