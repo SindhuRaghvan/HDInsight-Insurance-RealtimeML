@@ -55,7 +55,7 @@ def simulatedResponse():
 	# Empty json request
 	responseList = []
 	#read the CSV that would produce kafka messages
-	with open('ClaimInference.csv') as csv_file:
+	with open('files/ClaimInference.csv') as csv_file:
    		csv_reader = csv.reader(csv_file, delimiter=',')
 		line_count = 0
 		# Create a record for each row in the CSV and add it to the json request

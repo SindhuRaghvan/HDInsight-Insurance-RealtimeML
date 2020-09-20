@@ -17,8 +17,8 @@ echo "Creating Kafka Topic...."
 arrIN=(${KAFKABROKERS//,/ })
 
 echo "Updating producer file..."
-sed -i -e 's/<BROKER_HERE>/'$arrIN'/g' producer-simulator.py
+sed -i -e 's/<BROKER_HERE>/'$arrIN'/g' files/producer-simulator.py
 
 echo "Copy the following Kafka broker to paste into the consumer file:"
-echo arrIN
+echo $arrIN
 

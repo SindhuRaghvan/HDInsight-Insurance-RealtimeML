@@ -56,7 +56,6 @@ This template will deploy all the resources seen in the architecture above
 _(Note: This deployment may take about 10-15 minutes. Wait until all the resources are deployed before moving to the next step)_
 
 ***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
-Alternatively, you can use local Azure CLI
 
 
 If you're in a different subscription, set the subscription using the following command:
@@ -85,24 +84,31 @@ cd HDInsight-Insurance-RealtimeML/
 
 ***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Toggle shell in the cloudshell)
 
+If required, set subscription using the following command:
+
+`Get-AzureRmSubscription -SubscriptionId "xxxx-xxxx-xxxx-xxxx" -TenantId "yyyy-yyyy-yyyy-yyyy" | Set-AzureRmContext`
+
 This will copy the car_insurance_claim.csv file from Azure Blob storage to ADLS Storage associated with the Spark cluster. Then, it will run the spark job to create and store the ML models on the transferred data.   
 
 </br>
   
-```azurepowershell
+
+
+```powershell
 $resourceGroup="<your-resource-group>"
 $dataFactory="<your-data-factory-name>"
 
-$pipeline =Invoke-AzDataFactoryV2Pipeline 
-    -ResourceGroupName $resourceGroup 
-    -DataFactory $dataFactory 
+$pipeline =Invoke-AzDataFactoryV2Pipeline `
+    -ResourceGroupName $resourceGroup `
+    -DataFactory $dataFactory `
     -PipelineName "LoadAndModel"
 
-Get-AzDataFactoryV2PipelineRun 
-    -ResourceGroupName $resourceGroup  
-    -DataFactoryName $dataFactory 
+Get-AzDataFactoryV2PipelineRun `
+    -ResourceGroupName $resourceGroup `
+    -DataFactoryName $dataFactory `
     -PipelineRunId $pipeline
 ```
+
 
 </br>
 
@@ -113,7 +119,7 @@ if you would like to see what is going on in the spark job, go to the Spark clus
 </br> 
 </br>
 
-***Step 6:*** Go to the database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
+***Step 6:*** Go to the Predictions database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
 > [!TIP]
 >  If Required, setup firewall to access the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
 
@@ -174,7 +180,11 @@ Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the
 > [!NOTE]
 > If you changed the SQL User name during deployment, you need to change the username as well.
 
-***Step 9:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
+***Step 9:*** Now let's run the sparkinstall script file to install all required libraries on Spark cluster
+
+`./sparkinstall.sh`
+
+***Step 10:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
 
 `python files/producer-simulator.py`
 
@@ -184,11 +194,11 @@ Simultaneously, let's run the consumer file on **Spark server** to receive the s
 
 This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created.
 
-***Step 10:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
+***Step 11:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
 
 `Select * from UserData`
 
-***Step 11:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
+***Step 12:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
 
 Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
 
