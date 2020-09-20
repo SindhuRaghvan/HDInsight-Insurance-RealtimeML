@@ -55,7 +55,7 @@
         }
     },
     "variables": {
-        "ADLSGen2StorageName": "[concat('ADLS',uniqueString(resourceGroup().name))]",
+        "ADLSGen2StorageName": "[concat('adls',uniqueString(resourceGroup().name))]",
         "managedIdentityName": "[concat(uniqueString(resourceGroup().id),'mi')]",
         "blobStorageName": "[concat(uniqueString(resourceGroup().name),'blob')]"
 
