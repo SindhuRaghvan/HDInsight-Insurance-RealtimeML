@@ -44,7 +44,10 @@ The architecture we're deploying today is
 
 # Let's get into it:
 
-***Step 1:*** Use the following button to sign in to Azure and open the template in the Azure portal:
+***Step 1:*** Use the following button to sign in to Azure and open the template in the Azure portal:  
+
+> [!CAUTION]
+> Known Issue: Creating resources in West US, East Asia can fail while deploying DQL Database
     
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSindhuRaghvan%2FHDInsight-Insurance-RealtimeML%2Fmaster%2FARM-Template%2Fmodular-template.json)  
 
