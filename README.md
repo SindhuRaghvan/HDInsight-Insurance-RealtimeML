@@ -88,9 +88,9 @@ cd HDInsight-Insurance-RealtimeML/
 
 ***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and t oggle shell in the cloudshell)
 
-<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true" width = 200>
+<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true" width = 400>
 
-<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true" width = 200>
+<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true" width = 400>
 
 If required, set subscription using the following command after replacing with your SubscriptionId and TenanntId:
 
@@ -188,7 +188,7 @@ ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
 
 Copy the output of the file (last line of the output) to use in a little bit
 
-![images/zkcopy.png](zkcopy)
+![/images/zkcopy.png](zkcopy)
 
 ***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
 
