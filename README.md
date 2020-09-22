@@ -28,7 +28,7 @@ Let’s deploy a scenario in which we use historic data to create ML models on S
 The architecture we're deploying today is 
 </br>
 </br>
-![Architecture](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/Final_Architecture.svg)
+![Architecture](/images/Final_Architecture.svg)
 
 
 #### Data Flow:
@@ -57,9 +57,9 @@ _(Note: This deployment may take about 10-15 minutes. Wait until all the resourc
 
 Log into the Azure Portal and go into the resource group to make sure all the resources are deployed correctly. It should look like this:
 
-![Deployment](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/deployment.PNG?raw=true )
+![Deployment](/images/deployment.PNG?raw=true )
 
-***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
+***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](/images/shell.svg) on portal.azure.com)  
 
 
 If you're in a different subscription, set the subscription using the following command:
@@ -88,9 +88,9 @@ cd HDInsight-Insurance-RealtimeML/
 
 ***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and t oggle shell in the cloudshell)
 
-<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true" width = 400>
+<img src= "/images/bash-pwsh.PNG?raw=true" width = 400>
 
-<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true" width = 400>
+<img src= "/images/pwsh.PNG?raw=true" width = 400>
 
 If required, set subscription using the following command after replacing with your SubscriptionId and TenanntId:
 
@@ -132,8 +132,8 @@ Run the second command as required to monitor the pipeline run. Alternatively, y
 </br>
 if you would like to see what is going on in the spark job, go to the Spark cluster on Azure Portal and click on "Jupyter Notebook" in the Overview page. Once you login, click on Upload, and upload the CarInsuranceProcessing.ipynb file from the Notebook folder. You can run through the notebook step by step.  
 
-![FindNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/Jupyter.png?raw=true)
-![UploadNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/uploadNB.png?raw=true)
+![FindNB](/images/Jupyter.png?raw=true)
+![UploadNB](/images/uploadNB.png?raw=true)
 </br> 
 </br>
 
@@ -225,7 +225,7 @@ This file will use Spark streaming to retrieve the kafka data, transform it, run
 
 Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
 
-<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBIModel.PNG?raw=true" width=200>
+<img src= "/images/PBIModel.PNG?raw=true" width=200>
 
 Click on **Get Data** from the top ribbon, and choose Azure SQL Database.  
 
@@ -237,7 +237,7 @@ choose the "UserData" table and click on Load.
 
 You can setup by clicking on change detection in the Modeling pane. Once setup, your report will update every 5 seconds to get fresh data, and should look like this:
 
-![PBI_Final_Report](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/PBI.PNG?raw=true)
+![PBI_Final_Report](/images/PBI.PNG?raw=true)
 
 
 
