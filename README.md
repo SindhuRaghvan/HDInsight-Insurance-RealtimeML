@@ -188,7 +188,7 @@ ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
 
 Copy the output of the file (last line of the output) to use in a little bit
 
-![../../blob/master/images/zkcopy.png](zkcopy)
+![/images/images/zkcopy.png](zkcopy)
 
 
 ***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
