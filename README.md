@@ -141,7 +141,7 @@ if you would like to see what is going on in the spark job, go to the Spark clus
 > [!TIP]
 >  It is possible you might see an error while logging in because of firewall settings. Update firewall settings by clicking on "Set server firewall" in the error message and add your IP to the firewall ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))  
 > <img src="/images/sqlservererr.png" width=400>
-> ![AddIP](/images/addIP.png?raw=true)
+> <img src="/images/addIP.png?raw=true" width=400>
 
 In the query editor, execute the following query to create a table the holds final predictions:
 
