@@ -55,6 +55,10 @@ This template will deploy all the resources seen in the architecture above
 
 _(Note: This deployment may take about 10-15 minutes. Wait until all the resources are deployed before moving to the next step)_
 
+Log into the Azure Portal and go into the resource group to make sure all the resources are deployed correctly. It should look like this:
+
+![Deployment](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/deployment.PNG?raw=true )
+
 ***Step 2:*** Go to Azure Cloud Shell (either azure.shell.com or click on cloud shell ![icon](https://raw.githubusercontent.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/master/images/shell.svg) on portal.azure.com)  
 
 
@@ -82,11 +86,19 @@ cd HDInsight-Insurance-RealtimeML/
 
 
 
-***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Toggle shell in the cloudshell)
+***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and t oggle shell in the cloudshell)
 
-If required, set subscription using the following command:
+![NewSession](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true)
 
-`Get-AzureRmSubscription -SubscriptionId "xxxx-xxxx-xxxx-xxxx" -TenantId "yyyy-yyyy-yyyy-yyyy" | Set-AzureRmContext`
+![Toggle](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true)
+
+If required, set subscription using the following command after replacing with your SubscriptionId and TenanntId:
+
+```powershell
+Get-AzureRmSubscription
+Get-AzureRmSubscription -SubscriptionId "xxxx-xxxx-xxxx-xxxx" -TenantId "yyyy-yyyy-yyyy-yyyy" | Set-AzureRmContext
+```
+
 
 This will copy the car_insurance_claim.csv file from Azure Blob storage to ADLS Storage associated with the Spark cluster. Then, it will run the spark job to create and store the ML models on the transferred data.   
 
@@ -119,12 +131,17 @@ Run the second command as required to monitor the pipeline run. Alternatively, y
 
 </br>
 if you would like to see what is going on in the spark job, go to the Spark cluster on Azure Portal and click on "Jupyter Notebook" in the Overview page. Once you login, click on Upload, and upload the CarInsuranceProcessing.ipynb file from the Notebook folder. You can run through the notebook step by step.   
+![FindNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/Jupyter.png?raw=true)
+![UploadNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/uploadNB.png?raw=true)
 </br> 
 </br>
 
 ***Step 6:*** Go to the Predictions database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials (SQL server Authentication) used during creation of ARM Template.
 > [!TIP]
->  If Required, setup firewall to access the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
+>  It is possible you might see an error while logging in because of firewall settings. Update firewall settings from the error message and add your IP to the firewall ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
+> ![https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/sqlservererr.png?raw=true
+](SqlErr)
+> ![AddIP](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/addIP.png?raw=true)
 
 In the query editor, execute the following query to create a table the holds final predictions:
 
@@ -169,7 +186,9 @@ ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
 ./files/kafkaprocess.sh
 ```
 
-Copy the output of the file to use in a little bit
+Copy the output of the file (last line of the output) to use in a little bit
+
+
 
 ***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
 
