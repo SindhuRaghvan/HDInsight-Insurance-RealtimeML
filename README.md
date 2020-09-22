@@ -188,7 +188,8 @@ ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
 
 Copy the output of the file (last line of the output) to use in a little bit
 
-:::image type="content" source="images/zkcopy.png" alt-text="/images/zkcopy.png?raw=true":::
+
+![ZkCopy](/images/zkcopy.png?raw=true)
 
 
 ***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
@@ -200,6 +201,8 @@ ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
 
 ***Step 9:*** Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream. 
 
+![SparkEdits](/images/sparkedits.png?raw=true)
+
 > [!NOTE]
 > If you changed the SQL User name during deployment, you need to change the username as well.
 
@@ -207,7 +210,7 @@ ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
 
 `./sparkinstall.sh`
 
-***Step 11:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
+***Step 11:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records. This should print a set of records as they are streaming. (Ending this would end stop streaming also)
 
 `python files/producer-simulator.py`
 
@@ -215,7 +218,7 @@ Simultaneously, let's run the consumer file on **Spark server** to receive the s
 
 `python consumer.py`
 
-This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created.
+This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created. (Ending this would end stop processing the stream also)
 
 ***Step 12:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
 
