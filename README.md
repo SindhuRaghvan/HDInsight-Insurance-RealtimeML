@@ -88,9 +88,9 @@ cd HDInsight-Insurance-RealtimeML/
 
 ***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and t oggle shell in the cloudshell)
 
-![NewSession](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true)
+<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/bash-pwsh.PNG?raw=true" width = 200>
 
-![Toggle](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true)
+<img src= "https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/pwsh.PNG?raw=true" width = 200>
 
 If required, set subscription using the following command after replacing with your SubscriptionId and TenanntId:
 
@@ -130,7 +130,8 @@ Get-AzDataFactoryV2PipelineRun `
 Run the second command as required to monitor the pipeline run. Alternatively, you can monitor the run through the ADF portal by clicking on the resource --> "Author and Monitor" --> "Monitor" on the left menu  
 
 </br>
-if you would like to see what is going on in the spark job, go to the Spark cluster on Azure Portal and click on "Jupyter Notebook" in the Overview page. Once you login, click on Upload, and upload the CarInsuranceProcessing.ipynb file from the Notebook folder. You can run through the notebook step by step.   
+if you would like to see what is going on in the spark job, go to the Spark cluster on Azure Portal and click on "Jupyter Notebook" in the Overview page. Once you login, click on Upload, and upload the CarInsuranceProcessing.ipynb file from the Notebook folder. You can run through the notebook step by step.  
+
 ![FindNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/Jupyter.png?raw=true)
 ![UploadNB](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/uploadNB.png?raw=true)
 </br> 
@@ -139,8 +140,7 @@ if you would like to see what is going on in the spark job, go to the Spark clus
 ***Step 6:*** Go to the Predictions database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials (SQL server Authentication) used during creation of ARM Template.
 > [!TIP]
 >  It is possible you might see an error while logging in because of firewall settings. Update firewall settings from the error message and add your IP to the firewall ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
-> ![https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/sqlservererr.png?raw=true
-](SqlErr)
+> 
 > ![AddIP](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/addIP.png?raw=true)
 
 In the query editor, execute the following query to create a table the holds final predictions:
@@ -188,7 +188,7 @@ ssh sshuser@<your-kafka-server>-ssh.azurehdinsight.net
 
 Copy the output of the file (last line of the output) to use in a little bit
 
-
+![images/zkcopy.png](zkcopy)
 
 ***Step 8:*** Open another cloud shell session simultaneously and log into the spark cluster via ssh
 
