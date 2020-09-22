@@ -141,7 +141,7 @@ if you would like to see what is going on in the spark job, go to the Spark clus
 > [!TIP]
 >  It is possible you might see an error while logging in because of firewall settings. Update firewall settings from the error message and add your IP to the firewall ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
 > 
-> ![AddIP](https://github.com/SindhuRaghvan/HDInsight-Insurance-RealtimeML/blob/master/images/addIP.png?raw=true)
+> ![AddIP](/images/addIP.png?raw=true)
 
 In the query editor, execute the following query to create a table the holds final predictions:
 
