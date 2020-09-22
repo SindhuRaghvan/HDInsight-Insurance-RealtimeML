@@ -112,6 +112,9 @@ Get-AzDataFactoryV2PipelineRun `
 
 </br>
 
+> [!NOTE]
+> This job might take about 8-10 minutes to run
+
 Run the second command as required to monitor the pipeline run. Alternatively, you can monitor the run through the ADF portal by clicking on the resource --> "Author and Monitor" --> "Monitor" on the left menu  
 
 </br>
@@ -119,7 +122,7 @@ if you would like to see what is going on in the spark job, go to the Spark clus
 </br> 
 </br>
 
-***Step 6:*** Go to the Predictions database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials used during creation of ARM Template.
+***Step 6:*** Go to the Predictions database resource (NOT SQL server) deployed in the portal. Click on Query editor. Login with the credentials (SQL server Authentication) used during creation of ARM Template.
 > [!TIP]
 >  If Required, setup firewall to access the server by going to the server firewall settings and click on Add Client IP ([Reference](https://docs.microsoft.com/en-us/azure/azure-sql/database/firewall-create-server-level-portal-quickstart))
 
@@ -158,7 +161,7 @@ GO
 ```
 </br>
 
-***Step 7:***  Log into Kafka server via ssh and run the kafkaprocess.sh file inside the files/ directory. This will install all the required libraries to run our example.
+***Step 7:***  Go back to cloudshell bash and log into Kafka server via ssh and run the kafkaprocess.sh file inside the files/ directory. This will install all the required libraries to run our example.
 
 
 ```bash
@@ -175,16 +178,16 @@ Copy the output of the file to use in a little bit
 ssh sshuser@<your-spark-clustername>-ssh.azurehdinsight.net
 ```
 
-Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream. 
+***Step 9:*** Open the consumer.<i></i>py file and edit the "KafkaBserver" variable. Paste the output of the file you copied on the kafka server and paste it here. It will enable the Spark cluster to listen to kafka stream. 
 
 > [!NOTE]
 > If you changed the SQL User name during deployment, you need to change the username as well.
 
-***Step 9:*** Now let's run the sparkinstall script file to install all required libraries on Spark cluster
+***Step 10:*** Now let's run the sparkinstall script file to install all required libraries on Spark cluster
 
 `./sparkinstall.sh`
 
-***Step 10:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
+***Step 11:*** Now let's run the producer-simulator file on kafka server to simulate a stream of records
 
 `python files/producer-simulator.py`
 
@@ -194,11 +197,11 @@ Simultaneously, let's run the consumer file on **Spark server** to receive the s
 
 This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created.
 
-***Step 11:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
+***Step 12:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
 
 `Select * from UserData`
 
-***Step 12:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
+***Step 13:*** Now Let’s setup PowerBI to view this new data. Download the FinalPBI file from the PBI folder. Open the file using PowerBI Desktop.
 
 Now click on the model on the left as shown in the picture below, click on the UserData table and delete from the model. 
 
