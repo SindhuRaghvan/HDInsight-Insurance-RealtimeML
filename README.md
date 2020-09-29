@@ -220,7 +220,7 @@ Simultaneously, let's run the consumer file on **Spark server** to receive the s
 
 This file will use Spark streaming to retrieve the kafka data, transform it, run it against the models previously created and saved, then save it to the SQL table we just created. (Ending this would end stop processing the stream also)
 
-***Step 12:*** In a bit, the table on SQL database should populate. Check on the SQL Query Editor with query:
+***Step 12:*** In a bit (after you see "Collecting final predictions..." and stage progression on the console), the table on SQL database should populate. Check on the SQL Query Editor with query:
 
 `Select * from UserData`
 
