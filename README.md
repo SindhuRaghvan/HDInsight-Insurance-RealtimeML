@@ -44,6 +44,10 @@ The architecture we're deploying today is
 
 # Let's get into it:
 
+***Pre-Requisites:*** 
+1. A Microsoft Azure subscription. If you don't already have one, you can sign up for a free trial at https://azure.microsoft.com/free
+2. A contributor or an owner access on the subscription to create services 
+
 ***Step 1:*** Use the following button to sign in to Azure and open the template in the Azure portal:  
 
 > [!CAUTION]
@@ -86,7 +90,7 @@ cd HDInsight-Insurance-RealtimeML/
 
 
 
-***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and t oggle shell in the cloudshell)
+***Step 5:*** Take time to look through the ADF pipeline created, and then let's run the ADF pilpeline through Azure PowerShell (Open and new session and toggle shell in the cloudshell)
 
 <img src= "/images/bash-pwsh.PNG?raw=true" width = 400>
 
