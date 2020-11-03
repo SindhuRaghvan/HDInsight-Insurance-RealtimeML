@@ -26,8 +26,11 @@
      "ADLSGen2StorageName": {
          "type": "string"
          },
-      
-      "managedIdentityName": {
+     "utcValue": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    },
+    "managedIdentityName": {
           "type": "string"
       }
     },
@@ -95,7 +98,7 @@
               {
                 "name":"[concat(parameters('ADLSGen2StorageName'), '.dfs.core.windows.net')]",
                 "isDefault": true,
-                "fileSystem": "[concat(parameters('sparkClusterName'), '9-9-202001407')]",
+                "fileSystem": "[concat(parameters('sparkClusterName'), toLower(parameters('utcValue')))]",
                 "resourceID": "[concat(resourceGroup().id, '/providers/Microsoft.Storage/storageAccounts/', parameters('ADLSGen2StorageName'))]",
                 "msiResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('managedIdentityName'))]"
               }
@@ -177,7 +180,7 @@
               {
                 "name": "[concat(parameters('ADLSGen2StorageName'), '.dfs.core.windows.net')]",
                 "isDefault": true,
-                "fileSystem": "[concat(parameters('kafkaClusterName'), '9-9-202001407')]",
+                "fileSystem": "[concat(parameters('kafkaClusterName'), toLower(parameters('utcValue')))]",
                 "resourceID": "[concat(resourceGroup().id, '/providers/Microsoft.Storage/storageAccounts/', parameters('ADLSGen2StorageName'))]",
                 "msiResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('managedIdentityName'))]"
               }
